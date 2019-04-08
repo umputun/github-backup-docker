@@ -12,4 +12,3 @@ Dockerized version of [python-github-backup](https://github.com/josegonzalez/pyt
 
 1. Clone this repo
 2. run `docker-compose build`
-

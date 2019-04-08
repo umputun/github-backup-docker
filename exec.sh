@@ -2,7 +2,7 @@
 
 echo "$(date) - start backup scheduler"
 while :; do
-    DATE=$(date +%Y%m%d)
+    DATE=$(date +%Y%m%d-%H%N%S)
     echo "$(date) - execute backup for ${DATE}"
     github-backup ${GITHUB_USER} --token=$TOKEN --all --output-directory=/srv/var/${DATE} --private
 

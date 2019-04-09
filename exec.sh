@@ -10,7 +10,7 @@ echo "$(date) - start backup scheduler"
 while :; do
     DATE=$(date +%Y%m%d-%H%M%S)
     echo "$(date) - execute backup for ${DATE}"
-    github-backup ${GITHUB_USER} --token=$TOKEN --all --output-directory=/srv/var/${DATE} --private --organization --gists
+    github-backup ${GITHUB_USER} --token=$TOKEN --all --output-directory=/srv/var/${DATE} --private --gists
 
     echo "$(date) - cleanup"
     find /srv/var/ -mtime +${MAX_BACKUPS} -exec rm -fv {} \; 2>/dev/null

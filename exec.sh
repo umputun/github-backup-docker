@@ -16,7 +16,7 @@ while :; do
 
     echo "$(date) - cleanup"
     find /srv/var/ -mtime +${MAX_BACKUPS} -exec rm -fv {} \; 2>/dev/null
-    find /srv/var/ -type d -exec rmdir {} \; 2>/dev/null
+    find /srv/var/ -type d | sort -r | xargs rmdir
 
     echo "$(date) - sleep for 1 day"
     sleep 1d

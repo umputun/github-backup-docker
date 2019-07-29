@@ -15,8 +15,9 @@ while :; do
     done
 
     echo "$(date) - cleanup"
-    find /srv/var/ -mtime +${MAX_BACKUPS} -exec rm -fv {} \; 2>/dev/null
-    find /srv/var/ -type d | sort -r | xargs rmdir 2>/dev/null
+
+    HEAD_COUNT=$(($(ls -d /srv/var/ | wc -l) - ${MAX_BACKUPS}));
+    rm -rf $(ls -d /srv/var/ | head -n $HEAD_COUNT);
 
     echo "$(date) - sleep for 1 day"
     sleep 1d

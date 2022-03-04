@@ -10,7 +10,12 @@ Dockerized version of [python-github-backup](https://github.com/josegonzalez/pyt
 4. Set both `GITHUB_USER` and `GITHUB_ACCESS_TOKEN` (in environment or directly in `docker-compose.yml`)
 5. Run `docker-compose up -d` to initiate daily backup 
 
-## Build
+## Prepared images
+
+- [docker hub](https://hub.docker.com/r/umputun/github-backup-docker/tags)
+- [github packages](https://github.com/umputun/github-backup-docker/pkgs/container/github-backup-docker)
+
+## Build from the source
 
 1. Clone this repo
 2. run `docker-compose build`

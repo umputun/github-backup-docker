@@ -3,7 +3,7 @@ version: "2"
 services:
   github-backup:
     build: .
-    image: umputun/github-backup:latest
+    image: ghcr.io/umputun/github-backup-docker:latest
     container_name: "github-backup"
     hostname: "github-backup"
     restart: always

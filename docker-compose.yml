@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 
 services:
   github-backup:
@@ -17,7 +17,8 @@ services:
     environment:
       - GITHUB_USER
       - TOKEN=${GITHUB_ACCESS_TOKEN}
-      - MAX_BACKUPS=10
-      - TIME_ZONE=America/Chicago
+      - TIME_ZONE
+      - SLEEP
+      - ARGS
     volumes:
       - ./var:/srv/var

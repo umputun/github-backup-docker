@@ -1,7 +1,11 @@
 #!/bin/sh
 
-TIME_ZONE=${TIME_ZONE:=UTC}
+TIME_ZONE=${TIME_ZONE:="UTC"}
+ARGS=${ARGS:="--repositories --private --gists"}
+SLEEP=${SLEEP:="1d"}
+echo "args=${ARGS}"
 echo "timezone=${TIME_ZONE}"
+echo "sleep=${SLEEP}"
 cp /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime
 echo "${TIME_ZONE}" >/etc/timezone
 
@@ -11,13 +15,9 @@ while :; do
 
     for u in $(echo $GITHUB_USER | tr "," "\n"); do
         echo "$(date) - execute backup for ${u}, ${DATE}"
-        github-backup ${u} --token=$TOKEN --all --output-directory=/srv/var/${DATE}/${u} --private --gists
+        github-backup ${u} --token=$TOKEN --output-directory=/srv/var/${u} ${ARGS}
     done
 
-    echo "$(date) - cleanup"
-
-    ls -d1 /srv/var/* | head -n -${MAX_BACKUPS} | xargs rm -rf
-
-    echo "$(date) - sleep for 1 day"
-    sleep 1d
+    echo "$(date) - sleep for ${SLEEP}"
+    sleep "${SLEEP}"
 done

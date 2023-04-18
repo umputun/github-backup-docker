@@ -2,6 +2,10 @@
 
 TIME_ZONE=${TIME_ZONE:=UTC}
 echo "timezone=${TIME_ZONE}"
+
+BACKUP_OPTIONS=${BACKUP_OPTIONS:='--all --private --gists'}
+echo "backup options=${BACKUP_OPTIONS}"
+
 cp /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime
 echo "${TIME_ZONE}" >/etc/timezone
 
@@ -15,7 +19,7 @@ while :; do
     else
       for u in $(echo $GITHUB_USER | tr "," "\n"); do
         echo "$(date) - execute backup for User ${u}, ${DATE}"
-        github-backup ${u} --token=$TOKEN --all --output-directory=/srv/var/${DATE}/${u} --private --gists
+        github-backup ${u} --token=$TOKEN --output-directory=/srv/var/${DATE}/${u} ${BACKUP_OPTIONS}
       done
   fi
 
@@ -25,7 +29,7 @@ while :; do
     else
       for o in $(echo $GITHUB_ORG | tr "," "\n"); do
         echo "$(date) - execute backup for Organization ${u}, ${DATE}"
-        github-backup ${o} --organization --token=$TOKEN --all --output-directory=/srv/var/${DATE}/${o} --private --gists
+        github-backup ${o} --organization --token=$TOKEN --output-directory=/srv/var/${DATE}/${o} ${BACKUP_OPTIONS}
       done
 	fi
 

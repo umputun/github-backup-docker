@@ -11,6 +11,18 @@ Dockerized version of [python-github-backup](https://github.com/josegonzalez/pyt
 5. Set `GITHUB_USER` (Github user accounts) and/or `GITHUB_ORG` (Github Organizations; make sure the user token has access to the organization). If you have multiple users/organizations, you can list thme separating names by a comma.
 6. Run `docker-compose up -d` to initiate daily backup 
 
+## Customize Backup Options
+
+The underlying [python-github-backup](https://github.com/josegonzalez/python-github-backup) library [has a lot of options](https://github.com/josegonzalez/python-github-backup#usage) to customize what is backed up from github. 
+
+We can customize this by using the `BACKUP_OPTIONS` environment variable. By default, the container will backup everything and uses `--private --all --gist`. That will backup the repositories, issues, pull requests, labels, etc.
+
+If you wanted to customize this to only backup the repository code (including private repositories), you could define the following on your `docker-compose.yml` file's environment:
+
+```
+BACKUP_OPTIONS=--private --repositories
+```
+
 ## Prepared images
 
 - [docker hub](https://hub.docker.com/r/umputun/github-backup-docker/tags)

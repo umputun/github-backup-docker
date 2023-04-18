@@ -19,5 +19,6 @@ services:
       - TOKEN=${GITHUB_ACCESS_TOKEN}
       - MAX_BACKUPS=10
       - TIME_ZONE=America/Chicago
+      - BACKUP_OPTIONS=--all --private --gists
     volumes:
       - ./var:/srv/var
